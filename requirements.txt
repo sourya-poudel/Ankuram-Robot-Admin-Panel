@@ -1,4 +1,4 @@
 Flask
 Gunicorn
-pymongo[srv
+pymongo[srv]
 requests
