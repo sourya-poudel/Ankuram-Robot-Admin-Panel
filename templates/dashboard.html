@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/iba_logo.png') }}">
+    <title>AnkuramRobot</title>
+    
+      <!-- Add this in the <head> section before </head> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+<style>
+  .card {
+    transition: transform 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s cubic-bezier(.4,0,.2,1);
+    will-change: transform, box-shadow;
+  }
+  .card:hover {
+    box-shadow: 0 12px 36px 0 rgba(56,189,248,0.22), 0 2px 16px 0 rgba(31,38,135,0.18);
+    transform: translateY(-8px) scale(1.035);
+    border-color: var(--accent);
+  }
+    :root {
+        --primary: #2563eb;
+        --accent: #38bdf8;
+        --bg: #0f172a;
+        --card-bg: rgba(30,41,59,0.85);
+        --glass-blur: blur(8px);
+        --radius: 1.5rem;
+      }
+      body {
+        background: linear-gradient(120deg, #1e293b 0%, #0f172a 100%);
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #e0e7ef;
+      }
+      header {
+        width: 100%;
+        padding: 2.5rem 0 1.5rem 0;
+        text-align: center;
+        background: transparent;
+      }
+      header img {
+        height: 48px;
+        vertical-align: middle;
+        margin-right: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px #0002;
+      }
+      header h1 {
+        display: inline-block;
+        font-size: 2.5rem;
+        color: var(--primary);
+        font-weight: 800;
+        letter-spacing: 1px;
+        margin: 0;
+        vertical-align: middle;
+        text-shadow: 0 2px 8px #0f172a44;
+      }
+      .container {
+        display: flex;
+        gap: 2.5rem;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 2.5rem 1rem;
+        width: 100%;
+        max-width: 1200px;
+      }
+      .card {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        width: 340px;
+        min-height: 370px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        position: relative;
+        overflow: hidden;
+        border: 1.5px solid #334155;
+        backdrop-filter: var(--glass-blur);
+      }
+      .icon-circle {
+        margin-top: 2.2rem;
+        margin-bottom: 1.2rem;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary) 60%, var(--accent) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 16px #38bdf855;
+        font-size: 2.2rem;
+        color: #fff;
+      }
+      .content {
+        text-align: center;
+        padding: 0 2rem 2.2rem 2rem;
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .content h2 {
+        font-size: 1.7rem;
+        color: var(--primary);
+        margin-bottom: 0.3rem;
+        letter-spacing: 1px;
+        font-weight: 700;
+      }
+      .content h3 {
+        font-size: 1.08rem;
+        color: #94a3b8;
+        margin-bottom: 1.1rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+      .content p {
+        color: #cbd5e1;
+        font-size: 1.05rem;
+        margin-bottom: 2.2rem;
+        line-height: 1.6;
+      }
+      .content a {
+        display: inline-block;
+        padding: 0.8rem 2.2rem;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+        color: #fff;
+        border-radius: 2rem;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.08rem;
+        box-shadow: 0 2px 12px rgba(56,189,248,0.13);
+        border: none;
+        outline: none;
+      }
+      @media (max-width: 1100px) {
+        .container {
+          flex-direction: column;
+          gap: 2rem;
+          align-items: center;
+        }
+      }
+      @media (max-width: 600px) {
+        .container {
+          padding: 1.2rem 0.2rem;
+        }
+        .card {
+          width: 98vw;
+          min-width: 0;
+        }
+      }
+</style>
+    <!-- Google Fonts for Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+<body>
+  <header>
+    <img src="{{ url_for('static', filename='images/iba_logo.png') }}" alt="Logo" />
+    <h1>AnkuramRobot Dashboard</h1>
+  </header>
+  <div class="container">
+    <div class="card">
+      <div class="icon-circle"><i class="fa-solid fa-bullhorn"></i></div>
+      <div class="content">
+        
+        <h3>Upload Notice Photo</h3>
+        <p>
+          Upload the photo of the notice to be displayed.
+        </p>
+        <a href="/notice">Proceed</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon-circle"><i class="fa-solid fa-slideshare"></i></div>
+      <div class="content">
+        
+        <h3>Google Slides</h3>
+        <p>
+          Upload the Google Slide about important events to be displayed.
+        </p>
+        <a href="/slide">Proceed</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon-circle"><i class="fa-solid fa-utensils"></i></div>
+      <div class="content">
+        
+        <h3>Dynamic Menu</h3>
+        <p>
+          Upload the food menu for the dynamic food menu display system.
+        </p>
+        <a href="/foodmenu">Proceed</a>
+      </div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <!-- Removed VanillaTilt and all animation/hover effects -->
+</body>
