@@ -5,7 +5,7 @@ from datetime import datetime
 usr_name = "Sourya"
 usr_password = "Sourya.123"
 
-client = MongoClient('mongodb+srv://SouryaPoudel:Sourya.123@ankuramrobotbackend.jydvwk1.mongodb.net/')
+client = MongoClient('mongodb+srv://SouryaPoudel:Sourya.123@ankuramrobotbackend.ti5j9rz.mongodb.net/')
 
 app = Flask(__name__)
 app.secret_key='sourya123'
