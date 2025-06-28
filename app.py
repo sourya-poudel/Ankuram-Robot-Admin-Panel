@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request ,session,redirect
 from pymongo import MongoClient
 from datetime import datetime
+import requests
 
 usr_name = "Sourya"
 usr_password = "Sourya.123"
@@ -24,6 +25,11 @@ def dashboard():
             return render_template('login.html', error="Invalid username or password")
     return render_template('login.html')
 
+@app.route('/myip')
+def my_ip():
+    ip = requests.get('https://api.ipify.org').text
+    return f"My app public IP: {ip}"
+    
 @app.route("/notice",methods=['GET','POST'])
 def notice():
     if('user'in session and session['user']==usr_name):
